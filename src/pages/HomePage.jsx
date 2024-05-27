@@ -11,35 +11,35 @@ import { useSearchContext } from "../context/SearchContext";
 import { useFilterContext } from "../context/FilterContext";
 
 const Home = () => {
-  const { getAllCountries, isLoading } = useCountriesContext();
+  const { getAllCountries, isLoading, netError, setNetError } =
+    useCountriesContext();
   const { searchResultData, isSearching, networkError, setNetworkError } =
     useSearchContext();
   const { filterValue } = useFilterContext();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    getAllCountries();
-  });
-
   // useEffect(() => {
   //   getAllCountries();
+  // });
 
+  useEffect(() => {
+    getAllCountries();
+
+    if (netError) {
+      navigate("/error");
+      setNetError(false);
+    } else if (networkError) {
+      navigate("/notfound");
+      setNetworkError(false);
+    }
+  }, [netError, networkError]);
+
+  // useEffect(() => {
   //   if (networkError) {
   //     navigate("/notfound");
   //     setNetworkError(false);
   //   }
-
-  //   return () => {
-  //     console.log("Component unmounted");
-  //   };
   // }, [networkError]);
-
-  useEffect(() => {
-    if (networkError) {
-      navigate("/notfound");
-      setNetworkError(false);
-    }
-  }, [networkError]);
 
   return (
     <>

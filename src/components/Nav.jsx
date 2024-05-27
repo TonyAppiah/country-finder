@@ -1,6 +1,6 @@
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSearchContext } from "../context/SearchContext";
 import { useFilterContext } from "../context/FilterContext";
 

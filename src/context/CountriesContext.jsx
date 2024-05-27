@@ -5,18 +5,19 @@ const CountriesContext = createContext();
 
 export const CountriesProvider = ({ children }) => {
   const [allCountries, setAllCountries] = useState([]);
-
   const [isLoading, setIsLoading] = useState(true);
+  const [netError, setNetError] = useState(false);
 
   const getAllCountries = async () => {
-    // setIsLoading(true);
+    setIsLoading(true);
     try {
       const { data } = await axios.get("https://restcountries.com/v3.1/all");
       setAllCountries(data);
-      setIsLoading(false);
     } catch (error) {
       console.error(error);
+      setNetError(true);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -25,6 +26,8 @@ export const CountriesProvider = ({ children }) => {
         getAllCountries,
         allCountries,
         isLoading,
+        netError,
+        setNetError,
       }}
     >
       {children}
