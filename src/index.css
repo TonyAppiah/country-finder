@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: red;
+}
+
+select {
+  appearance: none;
+  background-image: url("./assets/arrow-down-icon.png");
+  background-repeat: no-repeat;
+  background-position: 12rem 50%;
+  background-size: 12px;
+}
+
+select#regions {
+  background-image: url("./assets/arrow-down-white.png");
+}
+
+#search-bar::placeholder {
+  color: white;
+}
+
+@media (min-width: 639px) {
+  #img-div {
+    width: 45rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .search-div {
+    width: 90%;
+  }
+}
